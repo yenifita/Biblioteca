@@ -1,32 +1,20 @@
 El proyecto es una aplicación de biblioteca desarrollada en Flask, con integración de una base de datos en MySQL mediante PyMySQL. Su propósito es permitir la gestión de libros y usuarios dentro de una biblioteca digital. 
 La aplicación está diseñada para ser ejecutada localmente o desplegada en contenedores Docker y en la plataforma PythonAnywhere.
 
-Instrucciones de instalación y ejecución
-
-    Clonar el repositorio
-
-git clone https://github.com/yenifita/Biblioteca.git
+Pasos de instalación y ejecución
+Clonar el repositorio desde GitHub:
+git clone git@github.com:yenifita/Biblioteca.git
 cd Biblioteca
 
-Crear un entorno virtual (opcional, pero recomendado)
+Instalar dependencias: Asegúrate de tener Python 3.11 y pip instalados. Luego, instala las bibliotecas necesarias:
+pip install Flask PyMySQL Werkzeug Flask-WTF
 
-python -m venv venv
-source venv/bin/activate  # En Windows usar venv\Scripts\activate
+Ejecutar la aplicación:
+python app.py
+La aplicación estará corriendo en http://localhost:5000.
 
-Instalar las dependencias
-
-pip install -r requirements.txt
-
-Ejecutar la aplicación
-
-    python app.py
-
-    La aplicación estará disponible en http://localhost:5000.
-
-Pasos para desplegar en Docker
-
-    Crear un Dockerfile en la raíz del proyecto con el siguiente contenido:
-
+Pasos para desplegar en Docker:
+Crear el archivo Dockerfile en la raíz del proyecto:
 FROM python:3.11
 WORKDIR /app
 COPY . .
@@ -34,47 +22,36 @@ RUN pip install --no-cache-dir Flask PyMySQL Werkzeug Flask-WTF
 EXPOSE 5000
 CMD ["python", "app.py"]
 
-Construir la imagen de Docker
-
+Construir la imagen de Docker:
 docker build -t mi_proyecto_flask .
+Subir la imagen a Docker Hub:
 
-Iniciar sesión en Docker Hub
-
+Iniciar sesión:
 docker login
-
-Etiquetar la imagen con el usuario de Docker Hub
-
+Etiquetar la imagen:
 docker tag mi_proyecto_flask usuario_docker/mi_proyecto_flask
-
-Subir la imagen a Docker Hub
-
+Subir la imagen:
 docker push usuario_docker/mi_proyecto_flask
 
-Ejecutar el contenedor
-
-    docker run -p 5000:5000 usuario_docker/mi_proyecto_flask
-
 Pasos para desplegar en PythonAnywhere
+Crear cuenta en PythonAnywhere.
+Configurar entorno virtual:
+mkvirtualenv --python=/usr/bin/python3.10 mi_entorno
+Subir el proyecto desde GitHub:
 
-    Crear una cuenta en PythonAnywhere
-        Registrarse en PythonAnywhere.
+Generar clave SSH:
+ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
+Añadir la clave a GitHub.
+Clonar el repositorio:
 
-    Configurar el entorno
-        Crear un entorno virtual en la consola de PythonAnywhere:
-
-    mkvirtualenv --python=/usr/bin/python3.11 mi_entorno
-
-Subir el proyecto a GitHub
-
-    Generar una clave SSH y agregarla a GitHub.
-    Clonar el repositorio en PythonAnywhere:
-
-    git clone git@github.com:yenifita/Biblioteca.git
-
-Ejecutar la aplicación en PythonAnywhere
-
-    Instalar las dependencias en el entorno virtual:
+git clone git@github.com:yenifita/Biblioteca.git
+Instalar dependencias:
 
 pip install -r requirements.txt
-
-Configurar el servidor web en PythonAnywhere para que ejecute app.py.
+Configurar la aplicación web:
+Ir a la pestaña "Web" y crear una nueva aplicación Flask.
+Seleccionar Python 3.10.
+Configurar rutas y variables necesarias.
+Probar el despliegue: La app estará disponible en la URL que te proporciona PythonAnywhere, como:
+arduino
+https://yosutor211.pythonanywhere.com/
