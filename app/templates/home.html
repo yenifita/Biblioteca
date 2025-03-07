@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Biblioteca</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            color: #343a40;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        nav a {
+            margin: 0 10px;
+            text-decoration: none;
+            color: #007bff;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        .session-info {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .session-info a {
+            color: #dc3545;
+        }
+        hr {
+            border: 0;
+            height: 1px;
+            background: #dee2e6;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h1>Biblioteca</h1>
+
+        <!-- Menú -->
+        <nav>
+            <a href="/listar">Listar todos</a>
+            <a href="/autores">Autores</a>
+            <a href="/libros">Libros</a>
+            <a href="/prestamos">Prestamos</a>
+            <a href="/criticas">Criticas</a>
+        </nav>
+
+        <hr>
+        {% if session['username'] %}
+            <p>Conectado como {{ username }} <a href="/logout">Logout</a></p>
+            <hr> 
+        {% endif %}
+        {% block content %}
+        {% endblock %}
+    </div>
+</body>
+</html>

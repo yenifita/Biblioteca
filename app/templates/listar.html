@@ -1,0 +1,21 @@
+{% extends "home.html" %}
+
+{% block content %}
+{% if session['username'] %}
+    <h2>Lista de libros y autores</h2>
+    <table class="table table-striped table-bordered">
+        <tr>
+            <th>Autor</th>
+            <th>Libro</th>
+        </tr>
+        {% for fila in contactos %}
+        <tr>
+            <td>{{ fila['nombre'] }}</td>
+            <td>{{ fila['titulo'] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+{% else %}
+    Debe estar conectado para ver la lista de contactos.
+{% endif %}
+{% endblock %}
